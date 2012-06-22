@@ -7,6 +7,10 @@ using System.Web.Routing;
 using System.Web.Security;
 using proyecto.Models;
 
+
+using CaptchaMVC.Attribute;
+using CaptchaMVC.HtmlHelpers;
+using CaptchaMVC.Models;
 namespace proyecto.Controllers
 {
     public class AccountController : Controller
@@ -24,10 +28,12 @@ namespace proyecto.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn(SimpleModel cm, LogOnModel model, string returnUrl)
         {
+            
             if (ModelState.IsValid)
             {
+
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
@@ -38,12 +44,27 @@ namespace proyecto.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("log", "Home");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    
+                    ModelState.AddModelError("", "El nombre de Usuario y Password son incorrectos");
+                    
+                    if (Session["captcha"]!=null&&(int)Session["captcha"]>2&&!this.IsCaptchaVerify("Error En el Captcha"))
+                    {
+                        @ViewBag.errorcaptcha = "El Captcha ingresado es incorrecto !!!";
+                        return View(model);
+                    }
+                    
+                    if (Session["captcha"] == null) {
+                        Session["captcha"] = 0;
+                    }
+                    int c = (int)Session["captcha"];
+                    c++;
+                    Session["captcha"] = c;                    
+
                 }
             }
 
@@ -56,6 +77,7 @@ namespace proyecto.Controllers
 
         public ActionResult LogOff()
         {
+            Session.Abandon();
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");

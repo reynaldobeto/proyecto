@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+   
+}
+@{
+    ViewBag.Title = "imformacion";
+    string imagen = "~/imagenes/" + ViewBag.list.avatar;
+    int ide = ViewBag.list.id;
+    
+}
+
+    <div id="nav2">      
+               <div class="titulonav2">
+               PERFIL
+               </div>
+               <div class="cuerporec">
+               <ul>
+               <br />
+                  <img src="@Url.Content(imagen)" width="30%" heigth="7%"> </img></br>
+                  </br>
+
+                         @ViewBag.list.nombre
+                                @ViewBag.list.apellido<br/>
+                             @ViewBag.list.pais<br/>
+                          @ViewBag.list.intereses<br/>
+                             @ViewBag.list.sexo<br/>
+                             <br>
+                             @Html.ActionLink("editar perfil ", "actualizar", new { ide })</b><br/>
+                </ul>
+                </div>
+
+               <div class="titulonav2">
+               Categorias
+               </div>
+               <div class="cuerporec">
+               <ul>
+                  <li><a href="#">Deportes</a></li>
+                  <li><a href="#">Programacion</a></li>
+                  <li><a href="#">Medicina</a></li>
+                  <li><a href="#">Civil</a></li>
+                  <li><a href="#">Agronomia</a></li>
+               </ul>
+               </div>
+               <div class="cuerporec">
+                    <div id="searchBoxOne">
+                      <form action="?" method="get">
+                        <input type="text" />
+                        <input type="submit" value="Buscar" />
+                      </form>
+                </div>
+                </div>
+        </div>
+

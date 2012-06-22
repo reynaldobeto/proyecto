@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "mostrartutorial";
+}
+
+<h2>mostrartutorial</h2>
+@foreach (var item in @ViewBag.lista1)
+{
+          //string imagen1 = "~/Content/imagenes/" + @item.portada;
+          string ruta = "../Content/imagenes1/" + @item.portada;
+          string titulo = @item.titulo;
+          int ide = @item.id;  
+         <article id="article3">
+        
+          <table border=0>
+                  <tr>
+                        <td rowspan="2"> <img src="@ruta" width="60px" height="70px" alt="por si no da"/> </td>
+                  </tr>
+                  <tr>
+                        <td>    <h6> @Html.ActionLink(titulo,"detalle", new { ide})</h6><h6>@item.nombre  @item.apellido</h6><h6>@item.fecha_publicacion</h6><h6>@Html.Raw(item.contenido)</h6></td>
+                  </tr>  
+                   
+                    
+          </table>       
+           
+        </article>
+                   
+  
+      
+}		
+</div>

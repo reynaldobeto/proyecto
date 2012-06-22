@@ -1,0 +1,24 @@
+﻿
+@model proyecto.Models.publicacion
+           
+<div>
+@Html.LabelFor(m => m.titulo)
+</div>
+<div>
+@Html.TextBoxFor(m => m.titulo)
+</div>
+<div>
+@Html.LabelFor(m => m.descripcion)
+</div>
+<div>
+@Html.TextAreaFor(m => m.descripcion)
+</div>
+<div>
+@Html.LabelFor(m => m.portada)
+</div>
+<div>
+   <input type="file" name="portada"/>
+</div>
+
+
+

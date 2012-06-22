@@ -15,6 +15,9 @@ namespace proyecto.Controllers
     
         public ActionResult Index()
         {
+            claseslinqDataContext db = new claseslinqDataContext();
+
+
             return View();
         }
         public ActionResult perfil()

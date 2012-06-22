@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "libros";
+   
+}
+@*@{
+    string img = "~/Content/imagenes/" + ViewBag.item.portada;    
+}*@
+<h5> @ViewBag.mensaje </h5>
+<div id="arreglar">
+
+@foreach (var item in @ViewBag.lista1)
+{
+          //string imagen1 = "~/Content/imagenes/" + @item.portada;
+          string ruta = "../Content/imagenes/" + @item.portada;
+          string titulo = @item.titulo;
+          int ide = @item.id;  
+         <article id="article1">
+        
+          <table border=0>
+          <tr>
+                <td rowspan="4"> <img src="@ruta" width="60px" height="70px" alt="por si no da"/> </td>
+          </tr>
+          <tr>
+                <td><h5><b>autor :</b></h5> </td><td><h6>@item.autor</h6></td>
+          </tr>
+          <tr>
+                <td><h5><b>Titulo :</b></h5></td><td><h6> @Html.ActionLink(titulo,"detalle", new { ide})</h6> </td>
+          </tr>      
+           <tr>
+            <td><h5><b>Detalle :</b></h5></td><td><h6>@item.descripcion</h6></td>
+           </tr>
+                   
+                @*
+                    <b>Titulo :</b> <b> @Html.ActionLink(titulo,"detalle", new { ide})</b><br/>
+                   @Html.ActionLink(titulo,"detalle", new { ide})
+                    <b>autor :</b> @item.autor<br/>
+                  <b>año :</b> @item.año<br/>
+                    <b> Detalle de Contenido:</b>@item.descripcion<br/>*@
+                   
+                    
+          </table>       
+           
+        </article>
+                   
+  
+      
+}		
+</div>

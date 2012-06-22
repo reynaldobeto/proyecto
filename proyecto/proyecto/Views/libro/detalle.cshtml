@@ -1,0 +1,84 @@
+﻿@model proyecto.Models.comentarios
+@{
+    ViewBag.Title = "detalle";
+}
+
+@*@ViewBag.hola*@
+<h4 id="ps">DETALLE DEL LIBRO<h4> 
+
+@foreach (var a in ViewBag.lista2)
+{
+    string ruta = "../Content/imagenes/" + @a.portada;
+    string ruta1 = "../Content/libros/" + @a.contenido;
+    <article id="article2">
+      <table>
+          <tr>
+             <td rowspan="7">
+                 <img src="@ruta" width="100px" height="150px" alt="por si no da"/>
+                  <br/><a href="@ruta1" >descarga aqui</a> 
+            </td>
+
+           </tr>
+           <tr>
+               <td><h6><b>AUTOR :</b></h6></td><td><h6> @a.autor</h6></td>      
+           </tr>
+           <tr>
+               <td><h6><b>TITULO :</b></h6></td><td><h6> @a.titulo</h6></td>      
+           </tr>
+           <tr>
+               <td><h6><b>AÑO :</b></h6></td><td><h6> @a.año</h6></td>      
+           </tr>
+           <tr>
+               <td ><h6><b>ARCHIVO :</b></h6></td><td><h6> @a.tamaño </h6></td>      
+           </tr>
+           <tr>
+               <td><h6><b>PUBLICADO EN :</b></h6></td><td><h6> @a.fecha_publicacion</h6></td>      
+           </tr>
+       </table>
+      
+    </article>
+    <br/>
+    int idpub = @a.id; 
+  @*  @Html.ActionLink("comentar", "mostrarcomentario","comentario", new { idpub })*@
+    
+     <form enctype="multipart/form-data" method="post" action="@Url.Action("../comentario/comentario")">
+    
+    <div>
+        <fieldset id="registrarr4">
+            <legend id="hhh">DEJE SU COMENTARIO</legend>
+            <br/>
+                    <div>
+                            @*<input type="hidden" value="idpub" class="tasks" name="id" />*@
+                             @* @{Html.RenderPartial("comentario");}
+                              @Html.Hidden("x=>x.id_conte",  "idpub")*@
+                    
+                            <div>
+                                    @Html.LabelFor(m => m.contenido)
+                            </div>
+                            <div>
+                                    @Html.TextAreaFor(m => m.contenido)
+                            </div>
+                            <div>
+                                @Html.LabelFor(m => m.id_conte)
+                            </div>
+                            <div>
+                                @*@Html.HiddenFor(m => m.id_conte, "idpub")*@
+                                @Html.TextBoxFor(m => m.id_conte, new { @Value = idpub })
+                            </div>
+                    </div>
+                   
+
+            
+
+            <p>
+                <input type="submit" value="Enviar Opinion" />
+            </p>
+            
+
+            </fieldset>
+        </div>
+    </form>
+  
+    
+}   
+

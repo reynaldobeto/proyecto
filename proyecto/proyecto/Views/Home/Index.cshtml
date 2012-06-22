@@ -1,27 +1,37 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-   
+ 
 }
-        <br />
-        <article>
-			<h3>INFORMACION</h3>
-			<p>primer contenido</p>	
-		</article>
+@*@foreach( var item in @ViewBag.lista){
+    @item.id<br/>
+    @item.tamaño<br/>
+    @item.descripcion<br/>
+}*@
 
-		<article>
+
+<div id="arreglar">
+
+        <article id="article1">
+			    <h3>INFORMACION</h3>
+			    <p>primer contenido</p>	
+		</article id="article1">
+      
+		<article id="article1">
 			<h3>LIBRO</h3>
 			<img src="">
 			<p>primer contenido</p>	
 		</article>
-		<article>
+		<article id="article1">
 			<h3>titulo2</h3>
 			<p>primer contenido</p>	
 		</article>
-		<article>
+		<article id="article1">
 			<h3>titulo1</h3>
 			<p>primer contenido</p>	
 		</article>
-		<article>
+		<article id="article1">
 			<h3>titulo1</h3>
 			<p>primer contenido</p>	
 	    </article></br>
+
+</div>
