@@ -1,0 +1,111 @@
+﻿@model proyecto.Models.comentarios
+@{
+    ViewBag.Title = "detalle curso ";
+}
+<div>
+<h6 id="ps">ES EL DETALLE DEL CURSO DEJE SU COMENTARIO SI DESEA</h6>
+@foreach (var item in @ViewBag.lista6)
+{
+   string imagen1 = "/Content/imagenes2/" + @item.portada;
+    string titulo = @item.titulo;
+    int idpub = @item.id;   
+
+    <div>
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+              	    <img src="@imagen1" alt="por si no da" class="img-indent">
+                    <h4 class="alt">@item.titulo</h4>
+                    <h4>Publicado por  @item.nombre  @item.apellido</h4>
+                    <h4> @item.fecha_publicacion</h4><br/>
+                    @Html.Raw(item.contenido)
+
+                  </div>
+                    <br/>
+                 <br/>
+                      @if (ViewBag.con==0)
+                      {
+                           @Html.ActionLink("me gusta", "../cursos/megusta", new { id = idpub }, new { @class="gusta"})
+                      }
+                      else
+                      {
+                          @Html.ActionLink("ya no me gusta", "../cursos/nomegusta", new { id = idpub }, new { @class="nogusta"})  
+                      }
+                      
+                      
+                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<text>comentarios : @ViewBag.contadorcomen </text> <br/>
+                        <text>A  @ViewBag.contador  Personas le gusta esto </text><br/>
+                </div>
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
+  
+     <form enctype="multipart/form-data" method="post" action="@Url.Action("../cursos/comentariocurso")" class="contacto">
+    
+    <div>
+        <fieldset>
+            <legend id="hhh">DEJE SU COMENTARIO</legend>
+            <br/>
+                    <div>
+
+                    
+                            <div>
+                                    @Html.LabelFor(m => m.contenido)
+                            </div>
+                            <div>
+                                    @Html.TextAreaFor(m => m.contenido)
+                            </div>
+                            <div>
+                                @Html.HiddenFor(m => m.id_conte, new { @Value = idpub })
+                     
+                            </div>
+                    </div>
+                   
+
+            
+
+            <p>
+                <input type="submit" value="Enviar Opinion" />
+            </p>
+            
+
+            </fieldset>
+        </div>
+    </form>
+}
+<br/>
+<div class="container_24">
+    <div class="row">
+        <div class="wrapper">
+            <div class="grid_16">
+                <div class="box">
+                        
+                        <b><h4> COMENTARIOS</h4></b>
+                 
+                        @foreach (var i in @ViewBag.comentarios)
+                        {
+                           @* <text>_______________________________________________________________________________________</text>*@
+                            <br/><br/>
+                            string ruta1 = "/imagenes/" + @i.avatar;
+                            <img src="@ruta1" alt="por si no da" class="comentario_ident"/>
+                            <h4>@i.fecha</h4>
+                            <h4>@i.nombre Dice :</h4> 
+                            @i.contenido<br/>
+                      
+                        }
+
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+		
+

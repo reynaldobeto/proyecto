@@ -1,0 +1,118 @@
+﻿@model proyecto.Models.comentarios
+@{
+    ViewBag.Title = "detallearti";
+}
+
+<h6 id="ps">EL DETALLE DEL ARTICULO DEJE SU COMENTARIO SI DESEA</h6>
+
+<div id="arreglar">
+
+@foreach (var i in @ViewBag.lista4)
+{
+    string imagen1 = "/Content/imagenes/" + @i.portada;
+    string titulo = @i.titulo;
+    int idpub = @i.id;  
+
+    <div>
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+              	    <img src="@imagen1" alt="por si no da" class="img-indent">
+                    <h4 class="alt">@i.titulo</h4>
+                    <h4>Publicado por  @i.nombre  @i.apellido</h4>
+                    <h4> @i.fecha_publicacion</h4><br/>
+                    @Html.Raw(i.contenido)
+
+                  </div>
+                    <br/>
+                   <br/>
+                      @if (ViewBag.con==0)
+                      {
+                           @Html.ActionLink("me gusta", "../articulos/megusta", new { id = idpub }, new { @class="gusta"})
+                      }
+                      else
+                      {
+                          @Html.ActionLink("ya no me gusta", "../articulos/nomegusta", new { id = idpub }, new { @class="nogusta"})  
+                      }
+                      
+                      
+                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<text>comentarios : @ViewBag.contadorcomen </text> <br/>
+                        <text>A  @ViewBag.contador  Personas le gusta esto </text><br/>
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+   <form enctype="multipart/form-data" method="post" action="@Url.Action("../articulos/comentarioarti")" class="contacto">
+    
+    <div>
+        <fieldset>
+            <legend id="hhh">DEJE SU COMENTARIO</legend>
+            <br/>
+                    <div>
+                            @*<input type="hidden" value="idpub" class="tasks" name="id" />*@
+                             @* @{Html.RenderPartial("comentario");}
+                              @Html.Hidden("x=>x.id_conte",  "idpub")*@
+                    
+                            <div>
+                                    @Html.LabelFor(m => m.contenido)
+                            </div>
+                            <div>
+                                    @Html.TextAreaFor(m => m.contenido)
+                            </div>
+                            <div>
+                                 @Html.HiddenFor(m => m.id_conte, new { @Value = idpub })
+                                @*@Html.HiddenFor(m => m.id_conte, "idpub")*@
+                               @* @Html.TextBoxFor(m => m.id_conte, new { @Value = idpub })*@
+                            </div>
+                    </div>
+                   
+
+            
+
+            <p>
+                <input type="submit" value="Enviar Opinion" />
+            </p>
+            
+
+            </fieldset>
+        </div>
+    </form>
+}		
+</div>
+</br>
+<div class="container_24">
+    <div class="row">
+        <div class="wrapper">
+            <div class="grid_16">
+                <div class="box">
+                        
+                        <b><h4> COMENTARIOS</h4></b>
+                 
+                        @foreach (var i in @ViewBag.comentarios)
+                        {
+                           @* <text>_______________________________________________________________________________________</text>*@
+                            <br/><br/>
+                            string ruta1 = "/imagenes/" + @i.avatar;
+                            <img src="@ruta1" alt="por si no da" class="comentario_ident"/>
+                            <h4>@i.fecha</h4>
+                            <h4>@i.nombre Dice :</h4> 
+                            @i.contenido<br/>
+                      
+                        }
+
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

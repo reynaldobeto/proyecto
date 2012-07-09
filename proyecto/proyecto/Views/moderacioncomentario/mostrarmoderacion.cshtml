@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "mostrarmoderacion";
+}
+
+<h4 id="ps">comentarios realizados</h2><br/>
+
+<div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_12">
+          	    <div class="box">
+                  <div class="wrapper">
+                     <fieldset>
+                        <h4>POSIBLES COMENTARIOS OFENSIVOS</h4>
+        
+                            <table border="1">
+                                <tr><th>Palabras de Diccionario &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</th> <th>Posibles Comentarios Ofensivos &nbsp &nbsp</th><th>Eliminar Comentarios &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp</th></tr>
+                                @foreach (var v in @ViewBag.ofensivo) { 
+                                    int cont=0;
+                                    foreach (var w in ViewBag.cantidad) { 
+                                        string x=w.contenido;
+                                        if (x.Contains(v.palabra1))
+                                        {
+                                            cont++;
+                                        }
+                                    }
+                                    string c = v.palabra1;
+                             
+                                    <tr><td>@Html.ActionLink(c, "detallecomen", new { id = v.palabra1 })</td>&nbsp &nbsp<td>@cont</td>&nbsp &nbsp<td><div class="derecha">@Html.ActionLink(" ", "eliminarcomen", new { id = v.palabra1 }, new { @class = "button2" })</div></td></tr>
+                                }
+                        </table>
+                    </fieldset>
+                       <br/><br/><br/>
+                       
+                       <h4>TODOS LOS COMENTARIOS<h4>     
+                       @foreach (var item in ViewBag.comen)
+                       { 
+                           <br/>
+                           string ruta1 = "/imagenes/" + @item.avatar;
+                           //int ide = @item.id;
+                           //int idep = @item.id_cont;
+                            <img src="@ruta1" alt="por si no da" class="comentario_ident2"/>
+                            <h4>@item.fecha</h4> <div class="derecha"> @Html.ActionLink(" ", "moderar", new { id = @item.id }, new { @class = "button2" })  </div> 
+                            <h4>@item.nombre Dice :</h4> 
+                            @item.contenido<br/>
+                             
+                            
+                
+                   
+                                     
+                           
+                       }
+
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="grid_8">
+          	<div class="titulonav2">
+               INSERTAR PALABRAS OFENSIVAS
+               </div>
+              
+               <div class="cuerporec">
+                      <div id="searchBoxOne">
+                           @using (Html.BeginForm("insertard", "moderacioncomentario"))
+                           { 
+                                @Html.Label("Palabra nueva:")<br />
+                                <input type="text" name="palabra" /><br/><br/>
+                               
+                                <input type="submit" value="INSERTAR" class="button" />
+                            }
+                         @* @using (Html.BeginForm("buscar", "Home"))
+                          {
+							    <input type="text" name="criterio" value="criterio"/>
+                                <select name="porque"><option value="*">Todos</option></select>
+							  <br/><br/>  
+                             <p>
+                                <input type="submit" value="BUSCAR" / class="button">
+                            </p>
+            
+							
+                          }*@
+                    </div>
+                </div>
+          </div>
+        </div>
+        </div>
+</div>

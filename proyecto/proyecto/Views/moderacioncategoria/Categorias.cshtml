@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Categorias";
+}
+
+<h4>CATEGORIAS</h4>
+
+<div class="container_24">
+    <div class="row">
+        <div class="wrapper">
+            <div class="grid_16">
+                <div class="box">
+                        
+                        
+                          <table border ="1">
+                            <tr><th>Categoria</th><th>Eliminar</th><th>Reemplazar</th></tr>
+                            @foreach (var v in ViewBag.categos) { 
+                                <tr><td>@v.tipo</td><td>@Html.ActionLink(" ", "Eliminar_categorias", new {  id = v.idcat}, new { @class="Button2"})</td>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <td>
+                                    @using (Html.BeginForm("Actualizar_categoria","moderacioncategoria"))
+                                    { 
+                                        @*@Html.Label("Por:")*@
+                                        <input type="text"  name="nuevo"/>
+                                        <input type="hidden" value="@v.idcat" name="id"/>
+                                        <input type="submit" value="Cambiar" class="Button"/>
+                                    }
+        
+                                </td>
+                                </tr>
+                            }
+                        </table>
+
+
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

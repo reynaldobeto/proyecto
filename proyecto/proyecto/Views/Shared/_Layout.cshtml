@@ -4,68 +4,89 @@
    
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/css/style.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/reset.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/grid.css")" rel="stylesheet" type="text/css" />
     <script src="@Url.Content("~/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
      <script src="@Url.Content("~/js/menu.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/jquery-1.4.2.min.js")" ></script>
+    <script type="text/javascript" src="@Url.Content("~/js/cufon-yui.js")"></script>
+     <script type="text/javascript" src="@Url.Content("~/js/Bell_Gothic_Std_500.font.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/js/Bell_Gothic_Std_700.font.js")"></script>
+     <script type="text/javascript" src="@Url.Content("~/js/cufon-replace.js")"></script> 
+     <script src="@Url.Content("~/ckeditor_3.6.3/ckeditor/ckeditor.js")" type="text/javascript"></script>
+
 </head>
 <body>
 
-
-	<section id="todo">
-
-		<header>
-             
-
-             <nav>
-                <ul id="menu1">
-                    
-                    <li>@Html.Partial("_LogOnPartial")</li>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Informacion","perfil","perfil") </li>
-                   
-                </ul>
-
+     <header>
+        <div class="header-bg">
+          <div class="container_24">
+      	    <div class="logo">
+                <div class="Roger">
+        	        <img src="@Url.Content("~/css/images/logo3.png")" width="200px" height="100px">
+                </div>
+            </div>
+            <nav>
+              <ul>
+                <li>@Html.ActionLink("HOME", "index", "Home")</li>
+                <li>@Html.ActionLink("LIBRO", "mostrarlibro", "libro")</li>
+                <li>@Html.ActionLink("ARTICULOS", "mostrarticulo", "articulos") </li>
+                <li>@Html.ActionLink("TUTORIALES", "mostrartutorial", "tutoriales") </li>
+                <li>@Html.ActionLink("CURSOS", "mostrarcursos", "cursos") </li>
+                <li>@Html.ActionLink("REGISTRATE", "perfil", "perfil") </li>
+                <li>@Html.ActionLink("PERFIL", "log", "Home")</li>
+                <li>@Html.ActionLink("LOGIN", "LogOn", "Account") </li>
+              </ul>
             </nav>
-			    <div id="container">
-                      
-			          <div style="margin: 0 auto;">
-			            <img src="@Url.Content("~/css/images/1.jpg")" width="100%" height="25%" style="opacity:0.9;filter:alpha(opacity=40)" onmouseover="this.style.opacity=1;this.filters.alpha.opacity=100" onmouseout="this.style.opacity=0.9;this.filters.alpha.opacity=40" > </img>
-			          </div>
+            <a href="#" class="rss">@Html.Partial("_LogOnPartial")</a>
+            <a href="#" class="main-banner"><img src="@Url.Content("~/css/images/banner.png")" width="962px" height="320px"></a>
+          </div>
+        </div>
 
-			    </div>
-		</header>
-		<div>
-			<div id="menu" >
-				<ul id="nav">
-					<li>@Html.ActionLink("HOME","Index","Home")</li>
-					<li>@Html.ActionLink("PERFIL","log","Home")</li>
-					
-                    <li>@Html.ActionLink("LIBRO", "insertarlibro", "libro")</li>
-					<li>@Html.ActionLink("ARTICULOS", "articulos", "articulos") </li>
-                    <li>@Html.ActionLink("TUTORIALES", "tutorial", "tutoriales") </li>
-					<li>@Html.ActionLink("CURSOS", "cursos", "cursos") </li>
-                    
-                    <li>@Html.ActionLink("INFORMACION","perfil","perfil") </li>
-					    
-				</ul>
-			</div>
-		</div>
+    </header>
+   
+        <section id="section">
+            @RenderBody();
+        </section>
 
+    <div id="fot"> 
+        <footer>
+            <div class="container_24">
+    	        <div class="wrapper">
+      	        <div class="copy">Ingenieria de Sistemas &copy; Reynaldo Bejarano </div>
+                <nav>
 
-
-<section  id="section">
-    @if (IsSectionDefined("barraperfil"))
-                {
-                    <div id="sidebarLeft">
-                        @RenderSection("barraperfil")
-                        <div id="lineah"></div>
-                    </div>                    
-                }
-    @RenderBody();
-</section>
-<section>
-<footer>copyringht</footer>
-</section>
+                  <ul>
+                      @if (Roles.IsUserInRole("administrador"))
+                      {
+                        <li>@Html.ActionLink("USUARIOS", "Usuarios", "moderacionusuarios") </li>
+                        <li>@Html.ActionLink("CATEGORIAS", "Categorias", "moderacioncategoria") </li>
+                        <li>@Html.ActionLink("COMENTARIOS", "mostrarmoderacion", "moderacioncomentario")</li>
+                        <li>@Html.ActionLink("LIBRO", "mostrar", "moderacioncontenidos")</li>
+                        <li>@Html.ActionLink("ARTICULOS", "moderarticulo", "moderacioncontenidos") </li>
+                        <li>@Html.ActionLink("TUTORIALES", "moderartuto", "moderacioncontenidos") </li>
+                        <li>@Html.ActionLink("CURSOS", "moderarcurso", "moderacioncontenidos") </li>
+                        
+                      }
+                      else
+                      {
+                        <li>@Html.ActionLink("HOME", "index", "Home")</li>
+                        <li>@Html.ActionLink("LIBRO", "mostrarlibro", "libro")</li>
+                        <li>@Html.ActionLink("ARTICULOS", "mostrarticulo", "articulos") </li>
+                        <li>@Html.ActionLink("TUTORIALES", "mostrartutorial", "tutoriales") </li>
+                        <li>@Html.ActionLink("CURSOS", "mostrarcursos", "cursos") </li>
+                        <li>@Html.ActionLink("REGISTRATE", "perfil", "perfil") </li>
+                        <li>@Html.ActionLink("PERFIL", "log", "Home")</li>
+                        <li>@Html.ActionLink("LOGIN", "LogOn", "Account") </li>
+                            
+                      }
+          	          
+                  </ul>
+                </nav>
+              </div>
+            </div>
+        </footer>
+     </div>
 </body>
 </html>

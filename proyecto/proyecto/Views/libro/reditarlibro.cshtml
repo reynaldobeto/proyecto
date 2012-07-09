@@ -1,0 +1,92 @@
+﻿@model proyecto.Models.libromodel
+
+@{
+    ViewBag.Title = "REGISTRAR LIBRO";
+}
+
+<h4>PUBLICAR LIBRO</h4>
+<h4 id="ps">Registrar Informacion de Libro </h4>
+<h5 id = "ps">si ustede desea visualizar libros vea @Html.ActionLink(" aqui ","mostrarlibro") </h5  >
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<form enctype="multipart/form-data" method="post" action="@Url.Action("reditarlibro")">
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    <div>
+        <fieldset id="registrarr2">
+            <legend id="hhh">Registrar Datos de Libro</legend>
+
+            <div>
+            @Html.LabelFor(m => m.titulo)
+            </div>
+            <div>
+            @Html.TextBoxFor(m => m.titulo, new { @Value = @ViewBag.titulo })
+            </div>
+            <div>
+            @Html.LabelFor(m => m.descripcion)
+            </div>
+            <div>
+            @Html.TextArea("descripcion", new { value=ViewBag.descripcion})
+            </div>
+            <div>
+            @Html.LabelFor(m => m.portada)
+            </div>
+            <div>
+                <img src="/Content/imagenes/@ViewBag.portada" width="50px" height="60px" alt="por si no da"/>
+               <input type="file" name="portada"/>
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.autor)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.autor, new { @Value = @ViewBag.autor})
+                @Html.ValidationMessageFor(m => m.autor)
+            </div>
+             <div>
+                @Html.LabelFor(m => m.año)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.año, new { @Value = @ViewBag.año })
+                @Html.ValidationMessageFor(m => m.año)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.categoria)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.categoria)
+                @Html.ValidationMessageFor(m => m.categoria)
+            </div>
+
+
+            <div>
+                @Html.LabelFor(m => m.idioma)
+            </div>
+             <div>
+                @Html.DropDownListFor(m => m.idioma, new[]{new SelectListItem{Value="Español",Text="Español"},
+                                                        new SelectListItem{Value="Ingles",Text="Ingles"},
+                                                        new SelectListItem{Value="Fraces",Text="Frances"},
+                                                        new SelectListItem{Value="Aleman",Text="Aleman"}},"Seleccionar opcion")
+                @Html.ValidationMessageFor(m => m.idioma)
+            </div>
+            <div>
+           
+            @Html.LabelFor(m => m.contenido)
+            </div>
+            <div>
+                
+               <input type="file" name="contenido"/></br>
+               @ViewBag.contenido
+            </div>
+
+            <input type="hidden" value="@ViewBag.id" name="ID"/>
+            <p>
+                <input type="submit" value="Register" /  class="button">
+            </p>
+            
+
+        </fieldset>
+    </div>
+</form>
+

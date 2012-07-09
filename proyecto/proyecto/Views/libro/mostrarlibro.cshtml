@@ -7,43 +7,36 @@
     string img = "~/Content/imagenes/" + ViewBag.item.portada;    
 }*@
 <h5> @ViewBag.mensaje </h5>
-<div id="arreglar">
-
+<br/>
+<h4 id="ps">DESEA PUBLICAR UN LIBRO HAGA CLICK @Html.ActionLink("AQUI", "insertarlibro", "libro")</h4><br/><br/>
 @foreach (var item in @ViewBag.lista1)
 {
-          //string imagen1 = "~/Content/imagenes/" + @item.portada;
-          string ruta = "../Content/imagenes/" + @item.portada;
-          string titulo = @item.titulo;
-          int ide = @item.id;  
-         <article id="article1">
-        
-          <table border=0>
-          <tr>
-                <td rowspan="4"> <img src="@ruta" width="60px" height="70px" alt="por si no da"/> </td>
-          </tr>
-          <tr>
-                <td><h5><b>autor :</b></h5> </td><td><h6>@item.autor</h6></td>
-          </tr>
-          <tr>
-                <td><h5><b>Titulo :</b></h5></td><td><h6> @Html.ActionLink(titulo,"detalle", new { ide})</h6> </td>
-          </tr>      
-           <tr>
-            <td><h5><b>Detalle :</b></h5></td><td><h6>@item.descripcion</h6></td>
-           </tr>
-                   
-                @*
-                    <b>Titulo :</b> <b> @Html.ActionLink(titulo,"detalle", new { ide})</b><br/>
-                   @Html.ActionLink(titulo,"detalle", new { ide})
-                    <b>autor :</b> @item.autor<br/>
-                  <b>año :</b> @item.año<br/>
-                    <b> Detalle de Contenido:</b>@item.descripcion<br/>*@
-                   
+    string ruta = "../Content/imagenes/" + @item.portada;
+    string titulo = @item.titulo;
+    int ide = @item.id;  
+
+    <div class="Roger">
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+              	    <img src="@ruta" alt="por si no da" class="img-indent">
+                    <h4>Publicado por : @item.nombre @item.apellido</h4>
+                    <h4 class="alt"> @Html.ActionLink(titulo,"detalle", new {id= ide})</h4>
+                    <h4> @item.autor</h4>
+                    <h4> </h4>
                     
-          </table>       
-           
-        </article>
-                   
-  
-      
-}		
-</div>
+                    @item.descripcion
+
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
+    </div>
+} 
+

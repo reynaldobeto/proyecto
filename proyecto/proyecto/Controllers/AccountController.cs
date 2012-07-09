@@ -105,6 +105,12 @@ namespace proyecto.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
+                    claseslinqDataContext db = new claseslinqDataContext();
+                    System.Guid id = db.aspnet_Users.Where(a => a.UserName == model.UserName).Select(a => a.UserId).ToArray()[0];
+                    System.Guid idRol = db.aspnet_Roles.Where(a => a.RoleName == "usuario").Select(a => a.RoleId).ToArray()[0];
+                    aspnet_UsersInRole rel = new aspnet_UsersInRole() { RoleId = idRol, UserId = id };
+                    db.aspnet_UsersInRoles.InsertOnSubmit(rel);
+                    db.SubmitChanges();
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
@@ -121,7 +127,7 @@ namespace proyecto.Controllers
         //
         // GET: /Account/ChangePassword
 
-        [Authorize]
+         [Authorize(Roles = "usuario")]
         public ActionResult ChangePassword()
         {
             return View();
@@ -130,7 +136,7 @@ namespace proyecto.Controllers
         //
         // POST: /Account/ChangePassword
 
-        [Authorize]
+         [Authorize(Roles = "usuario")]
         [HttpPost]
         public ActionResult ChangePassword(ChangePasswordModel model)
         {

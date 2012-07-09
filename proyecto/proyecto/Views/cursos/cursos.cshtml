@@ -3,7 +3,7 @@
     ViewBag.Title = "cursos";
 }
 
-<h2>cursos</h2>
+<h4>PUBLICAR CURSO</h4>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <h5 id = "ps">si ustede desea visualizar libros vea @Html.ActionLink(" aqui ","mostrarcursos") </h5  >
@@ -24,11 +24,13 @@
                 @Html.LabelFor(m => m.contenido)
             </div>
             <div>
-                @Html.EditorFor(m => m.contenido)
+              @*  @Html.EditorFor(m => m.contenido)*@
+              
+              @Html.TextAreaFor(m => m.contenido, new { @class="ckeditor"})
             </div>
     
             <p>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Register" /  class="button">
             </p>
             
 

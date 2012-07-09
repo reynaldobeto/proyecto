@@ -14,7 +14,7 @@ namespace proyecto.Models
         public string portada { get; set; }
         public string estado { get; set; }
         //public string titulo { get; set; }
-        [UIHint("tinymce_jquery_full"), AllowHtml]
+        //[UIHint("tinymce_jquery_full"), AllowHtml]
         public string contenido { get; set; }
         public string categoria { get; set; }
         public Guid idusers { get; set; }
@@ -29,8 +29,9 @@ namespace proyecto.Models
                 descripcion = cur.descripcion,
                 contenido = cur.contenido,
                 portada = cur.portada,
-                estado = "activo",
+                estado = "false",
                 UserId = cur.idusers,
+                observacion = "ninguno",
             };
             db.publicacions.InsertOnSubmit(p);
             db.SubmitChanges();
@@ -46,18 +47,18 @@ namespace proyecto.Models
             db.SubmitChanges();
         }
 
-        public void regcategor(curso1 cur, int idpub, int idcate)
-        {
-            relcategoria rcar = new relcategoria()
-            {
-                id_conte = idpub,
-                id_cat = idcate,
+        //public void regcategor(curso1 cur, int idpub, int idcate)
+        //{
+        //    relcategoria rcar = new relcategoria()
+        //    {
+        //        id_conte = idpub,
+        //        id_cat = idcate,
 
-            };
-            db.relcategorias.InsertOnSubmit(rcar);
-            db.SubmitChanges();
+        //    };
+        //    db.relcategorias.InsertOnSubmit(rcar);
+        //    db.SubmitChanges();
 
-        }
+        //}
 
 
 

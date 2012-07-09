@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+<div>
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                     <h4>LISTA DE USUARIOS</h4><br/><br/>
+               
+                               @foreach (var item in ViewBag.userlist)
+                               {
+                            
+                            
+                                           <img src="/imagenes/@item.avatar" alt="" class="comentario_ident"></img>
+                                            <h4><b>Nombre :  </b>@item.nombre</h4>
+                                            <h4><b>Puntaje : </b>@item.puntaje</h4>
+                                            <h4><b>Estado :  </b>@item.estado</h4>  
+                                             
+                                            string estado = item.estado;
+                                            if (estado=="activo")
+                                            {
+                                                @Html.ActionLink("Bannear", "Bannear", new { id = @item.UserId }) 
+                                            }
+                                            else
+                                            {
+                                                @Html.ActionLink("Activar", "Activar", new { id = @item.UserId })
+                                            }
+                                            <br/><br/>
+                                             
+                                            <h4>Infraccionar a Usuario  : Disminuir Karma</h4> 
+                                   
+                                            using (Html.BeginForm("Disminuir_karma", "moderacionusuarios")) { 
+                                           <input type="hidden" name="userid" value="@item.UserId"/>
+                                            @Html.TextBox("cantidad")<br />
+                                            <input type="submit" value="disminuir" class="Button"/>
+                                       
+                                       }
+
+                                   <br/>
+                                   <br/>
+                                   <br/>
+                                   <br/>
+                                             
+                                       
+                                    
+                               }
+                                
+                       
+                       
+
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
+    </div>

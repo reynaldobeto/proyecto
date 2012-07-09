@@ -1,7 +1,7 @@
+C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\bin\proyecto.dll
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\bin\proyecto.pdb
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\bin\EntityFramework.dll
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\bin\EntityFramework.xml
-C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\obj\Debug\proyecto.dll
 C:\Users\Reynaldo\Documents\Visual Studio 2010\Projects\proyecto\proyecto\obj\Debug\proyecto.pdb

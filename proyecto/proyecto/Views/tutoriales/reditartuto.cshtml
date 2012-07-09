@@ -1,0 +1,62 @@
+﻿@model proyecto.Models.tutoriales
+
+@{
+    ViewBag.Title = "tutoriales";
+}
+
+
+<h4 id="ps">REEDITAR TUTORIAL</h4>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<form enctype="multipart/form-data" method="post" action="@Url.Action("reditartuto")">
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    <div>
+        <fieldset id="registrarr3">
+            <legend id="hhh">Registrar Datos aqui</legend>
+            <div>
+                @Html.LabelFor(m => m.titulo)
+                </div>
+                <div>
+                @Html.TextBoxFor(m => m.titulo, new { @Value = @ViewBag.titulo })
+                </div>
+                <div>
+                @Html.LabelFor(m => m.descripcion)
+                </div>
+                <div>
+                @Html.TextArea("descripcion", new { value=ViewBag.descripcion})
+                </div>
+                <div>
+                @Html.LabelFor(m => m.portada)
+                </div>
+                <div>
+                    <img src="/Content/imagenes/@ViewBag.portada" width="50px" height="60px" alt="por si no da"/>
+                   <input type="file" name="portada"/>
+                </div>
+      
+                 <div>
+                @Html.LabelFor(m => m.categoria)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.categoria)
+                @Html.ValidationMessageFor(m => m.categoria)
+            </div>
+             <div>
+                @Html.LabelFor(m => m.contenido)
+            </div>
+            <br/>
+            <div>
+
+                @*@Html.EditorFor(m => m.contenido, new { value = @Html.Raw(@ViewBag.contenido) })*@
+               <textarea class="ckeditor" id="ckeditor" name="ckeditor">@ViewBag.contenido</textarea>
+            </div>
+            <input type="hidden" value="@ViewBag.id" name="ID"/>
+            <p>
+                <input type="submit" value="Register" /  class="button">
+            </p>
+            
+
+        </fieldset>
+    </div>
+</form>

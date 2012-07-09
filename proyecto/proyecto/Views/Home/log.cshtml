@@ -1,38 +1,288 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
-   
+    ViewBag.Title = "log";
 }
+
+<h4>PERFIL DE USUARIO</h4></br>
+
 @{
-    ViewBag.Title = "imformacion";
-    string imagen = "~/imagenes/" + ViewBag.list.avatar;
+                        //ViewBag.Title = "imformacion";
+                        //string imagen = "~/imagenes/" + ViewBag.list.avatar;
+                        //int ide = ViewBag.list.id;
     
 }
-<div id="arreglar">
+<section id="content">
+  	<div class="container_24">
+    	<div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_12">
+          	    <div class="box">
+            	    <b><h4>DATOS DE USUARIO</h4></b></br>
+                  <div class="wrapper">
+              	    <img src="/imagenes/@ViewBag.avatar" alt="" class="img-indent"></img>
+                    </br></br>
+                    <p class="p2"> <b>Nombre y Apellido :  </b>  @ViewBag.nombre
+                                 @ViewBag.apellido<br/>
 
-        <article id="article1">
+                                 <b>Pais :  </b>  @ViewBag.pais<br/>
+                              <b>Intereses :  </b>  @ViewBag.intereses<br/>
+                              <b>Sexo :  </b> @ViewBag.sexo<br/></br>
+                                <b>Email :  </b> @ViewBag.nic<br/></br>
+                                <b>Karma :  </b> @ViewBag.puntaje
+
+                           
+
+                                 <b> Usted Realizo </b> (@ViewBag.publica) <b> publicaciones </b>  </br>
+                        @Html.ActionLink("editar perfil ", "actualizar", new { ide = @ViewBag.id })<br/></p>
+                                 @Html.ActionLink("cambiar contraseña ", "../Account/ChangePassword")<br/></p>
+
+                    <br/>
+                    <h4>PUEDE BUSCAR LOS CONTENIDOS Q DESEA EN NUESTRO BUSCADOR </h4><br/>
+                    <h4> Libros q fueron ya Fueron Publicados</h4>
+                    @if (ViewBag.clibro == 0)
+                    {
+                        <div  id='ps'> <p> No existen libros publicados</p></div>
+                    }
+                    else
+                    {
+                        foreach (var item1 in ViewBag.libro)
+                        {
+                            string ruta = "../Content/imagenes/" + @item1.portada;
+                            <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                                 int ide = @item1.id;
+                                 string titulo = @item1.titulo;
+                                
+                                  <h4 class="alt"> @Html.ActionLink(titulo, "../libro/detalle", new { id = ide })</h4>
+                                    @item1.descripcion<br/>
+                      
+                        }
+                    }
+                    <br/>
+                    <br/>
+                    <h4>Libros observados</h4>
+                    @foreach (var item in ViewBag.libro1)
+                    {
+                        string ruta = "/Content/imagenes/" + @item.portada;
+                        int ide = @item.id;
+                        string observacion = @item.observacion;
+                        <br/>
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                         <h4 class="alt">observaciones :  @Html.ActionLink(observacion, "../libro/reditarlibro", new { id = ide })</h4>
+                         
+
+                    }
+                    <br/><br/><br/>
+
+                    <h4>Libros aun no autorizados o revisados</h4>
+                    @foreach (var item in ViewBag.libro2)
+                    {
+                        string ruta = "/Content/imagenes/" + @item.portada;
+                                                <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                        <h4> observaciones : @item.observacion</h4>
+                    }
+
+                    <br/>
+                    <br/><br/>
+
+
+                    <h4 style="color: #0000FF"> Articulos que ya fueron publicados</h4>
+                    @if (ViewBag.carti == 0)
+                    {
+                        <div  id='ps'> <p> No existen Articulos que se hayan publicado</p></div>
+                    }
+                    else
+                    {
+                        foreach (var item1 in ViewBag.arti)
+                        {
+                            string ruta = "../Content/imagenes/" + @item1.portada;
+                            <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                                 int ide = @item1.id;
+                                 string titulo = @item1.titulo;
+                                
+                                  <h4 class="alt"> @Html.ActionLink(titulo, "../articulos/detallearti", new { id = ide })</h4>
+                                    @item1.descripcion<br/>
+                      
+                        }
+                    }
+          
+                    <h4 style="color: #0000FF">Articulos Observados</h4>
+                    @foreach (var item in ViewBag.arti1)
+                    {
+                        string ruta = "/Content/imagenes/" + @item.portada;
+                        int ide = @item.id;
+                        string observacion = @item.observacion;
+                        <br/>
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                         <h4 class="alt">observaciones :  @Html.ActionLink(observacion, "../articulos/reditarticulo", new { id = ide })</h4>
+                         
+
+                    }
+                    <br/><br/><br/>
+
+                    <h4 style="color: #0000FF">Articulos aun no autorizados o revisados</h4>
+                    @foreach (var item in ViewBag.arti2)
+                    {
+                        string ruta = "/Content/imagenes/" + @item.portada;
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                        <h4> observaciones : @item.observacion</h4><br/><br/><br/>
+                    }
+
+
+                    <br/>
+                    <br/><br/>
+
+
+                    <h4 style="color: red"> Tutoriales que ya fueron publicados</h4>
+                    @if (ViewBag.ctuto == 0)
+                    {
+                        <div  id='ps'> <p> No existen Tutoriales que se hayan publicado</p></div>
+                    }
+                    else
+                    {
+                        foreach (var item1 in ViewBag.tuto)
+                        {
+                            string ruta = "../Content/imagenes1/" + @item1.portada;
+                            <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                                 int ide = @item1.id;
+                                 string titulo = @item1.titulo;
+                                
+                                  <h4 class="alt"> @Html.ActionLink(titulo, "../tutoriales/detallearti", new { id = ide })</h4>
+                                    @item1.descripcion<br/>
+                      
+                        }
+                    }
+          
+                    <h4 style="color: red">Tutoriales Observados</h4>
+                    @foreach (var item in ViewBag.tuto1)
+                    {
+                        string ruta = "../Content/imagenes1/" + @item.portada;
+                        int ide = @item.id;
+                        string observacion = @item.observacion;
+                        <br/>
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                         <h4 class="alt">observaciones :  @Html.ActionLink(observacion, "../tutoriales/reditartuto", new { id = ide })</h4>
+                         
+
+                    }
+                    <br/><br/><br/>
+
+                    <h4 style="color: red">Tutoriales aun no autorizados o revisados</h4>
+                    @foreach (var item in ViewBag.tuto2)
+                    {
+                        string ruta = "/Content/imagenes1/" + @item.portada;
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                        <h4> observaciones : @item.observacion</h4><br/><br/><br/>
+                    }
+                                        <br/>
+                    <br/><br/>
+
+
+                    <h4 style="color: green"> cursos que ya fueron publicados</h4>
+                    @if (ViewBag.ccurso == 0)
+                    {
+                        <div  id='ps'> <p> No existen cursos que se hayan publicado</p></div>
+                    }
+                    else
+                    {
+                        foreach (var item1 in ViewBag.curso)
+                        {
+                            string ruta1 = "../Content/imagenes2/" + @item1.portada;
+                            <img src="@ruta1" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                                 int ide = @item1.id;
+                                 string titulo = @item1.titulo;
+                                
+                                  <h4 class="alt"> @Html.ActionLink(titulo, "../cursos/detallecurso", new { id = ide })</h4>
+                                    @item1.descripcion<br/>
+                      
+                        }
+                    }
+          
+                    <h4 style="color: green">Cursos Observados</h4>
+                    @foreach (var item in ViewBag.curso1)
+                    {
+                        string ruta1 = "../Content/imagenes2/" + @item.portada;
+                        int ide = @item.id;
+                        string observacion = @item.observacion;
+                        <br/>
+                        <img src="@ruta1" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                         <h4 class="alt">observaciones :  @Html.ActionLink(observacion, "../cursos/reditarcurso", new { id = ide })</h4>
+                         
+
+                    }
+                    <br/><br/><br/>
+
+                    <h4 style="color: green">cursos aun no autorizados o revisados</h4>
+                    @foreach (var item in ViewBag.curso2)
+                    {
+                        string ruta = "/Content/imagenes2/" + @item.portada;
+                        <img src="@ruta" alt="por si no da" width="50px" height="50px" class="comentario_ident1"/>
+                        <h4> titulo : @item.titulo</h4>
+                        <h4> observaciones : @item.observacion</h4><br /><br/><br/>
+                    }
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  </div>
+                </div>
+              </div>
+           <div class="grid_8">
+          	<div class="titulonav2">
+               Categorias
+               </div>
+               <div class="cuerporec">
+               <ul>
+                 @foreach (var item in ViewBag.cate)
+                 {
+                     <li><a href="#">@item.tipo</a></li>
+                 }
+                  @*<li><a href="#">Deportes</a></li>
+                  <li><a href="#">Programacion</a></li>
+                  <li><a href="#">Medicina</a></li>
+                  <li><a href="#">Civil</a></li>
+                  <li><a href="#">Agronomia</a></li>*@
+               </ul>
+               </div>
+               <div class="cuerporec">
+                      <div id="searchBoxOne">
+                          @using (Html.BeginForm("buscar", "Home"))
+                          {
+							    <input type="text" name="criterio" value="criterio"/>
+                                <select name="porque"><option value="*">Todos</option></select>
+							  <br/><br/>  
+                             <p>
+                                <input type="submit" value="BUSCAR" / class="button">
+                            </p>
             
-			    <h3>INFORMACION</h3>
-			    <p>primer contenido</p>	
-		</article>
-      
-		<article id="article1">
-			<h3>LIBRO</h3>
-			<img src="">
-			<p>primer contenido</p>	
-		</article>
-		<article id="article1">
-			<h3>titulo2</h3>
-			<p>primer contenido</p>	
-		</article>
-		<article id="article1">
-			<h3>titulo1</h3>
-			<p>primer contenido</p>	
-		</article>
-		<article id="article1">
-			<h3>titulo1</h3>
-			<p>primer contenido</p>	
-	    </article></br>
-</div>
-@section barraperfil{
-    @{Html.RenderPartial("barralateral");}
-}
+							
+                          }
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+              

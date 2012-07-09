@@ -5,46 +5,64 @@
 
 @*@ViewBag.hola*@
 <h4 id="ps">DETALLE DEL LIBRO<h4> 
-
-@foreach (var a in ViewBag.lista2)
+@foreach (var item in @ViewBag.lista2)
 {
-    string ruta = "../Content/imagenes/" + @a.portada;
-    string ruta1 = "../Content/libros/" + @a.contenido;
-    <article id="article2">
-      <table>
-          <tr>
-             <td rowspan="7">
-                 <img src="@ruta" width="100px" height="150px" alt="por si no da"/>
-                  <br/><a href="@ruta1" >descarga aqui</a> 
-            </td>
+    string ruta = "/Content/imagenes/" + @item.portada;
+    string ruta1 = "/Content/libros/" + @item.contenido;
 
-           </tr>
-           <tr>
-               <td><h6><b>AUTOR :</b></h6></td><td><h6> @a.autor</h6></td>      
-           </tr>
-           <tr>
-               <td><h6><b>TITULO :</b></h6></td><td><h6> @a.titulo</h6></td>      
-           </tr>
-           <tr>
-               <td><h6><b>AÑO :</b></h6></td><td><h6> @a.año</h6></td>      
-           </tr>
-           <tr>
-               <td ><h6><b>ARCHIVO :</b></h6></td><td><h6> @a.tamaño </h6></td>      
-           </tr>
-           <tr>
-               <td><h6><b>PUBLICADO EN :</b></h6></td><td><h6> @a.fecha_publicacion</h6></td>      
-           </tr>
-       </table>
-      
-    </article>
-    <br/>
-    int idpub = @a.id; 
-  @*  @Html.ActionLink("comentar", "mostrarcomentario","comentario", new { idpub })*@
+    string titulo = @item.titulo;
+    int ide = @item.id;
+    int idpub = @item.id; 
+
+   
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+              	    <img src="@ruta" alt="por si no da" class="img-indent">
+                    <br/><a href="@ruta1" >Descarga Libro Aqui</a> 
+                    <h4 class="alt"> @Html.ActionLink(titulo, "detalle", new { id = ide })</h4>
+                    <h4>Autor :  @item.autor</h4>
+                    <h4>Año de Publicacion: @item.año</h4>
+                    <h4>Tamaño de Archivo: @item.tamaño</h4>
+                    
+                    <h4>@item.fecha_publicacion</h4>
+                     <iframe src="@ruta1" width="500" height="500"></iframe>
+                   
+                  </div>
+                  <br/>
+                  <br/>
+                      @if (ViewBag.con==0)
+                      {
+                           @Html.ActionLink("me gusta", "../libro/megusta", new { id = idpub }, new { @class="gusta"})
+                      }
+                      else
+                      {
+                          @Html.ActionLink("ya no me gusta", "../libro/nomegusta", new { id = idpub }, new { @class="nogusta"})  
+                      }
+                      
+                      
+                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<text>comentarios : @ViewBag.contadorcomen </text> <br/>
+                        <text>A  @ViewBag.contador  Personas le gusta esto </text><br/>
+                            
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
     
-     <form enctype="multipart/form-data" method="post" action="@Url.Action("../comentario/comentario")">
+                            //int idpub = @item.id; 
+  @*  @Html.ActionLink("comentar", "mostrarcomentario","comentario", new { idpub })*@
+
+
+
+     <form enctype="multipart/form-data" method="post" action="@Url.Action("../comentario/comentario")" class="contacto">
     
     <div>
-        <fieldset id="registrarr4">
+        
             <legend id="hhh">DEJE SU COMENTARIO</legend>
             <br/>
                     <div>
@@ -57,13 +75,12 @@
                             </div>
                             <div>
                                     @Html.TextAreaFor(m => m.contenido)
+                                     @Html.ValidationMessageFor(m => m.contenido)
                             </div>
+
                             <div>
-                                @Html.LabelFor(m => m.id_conte)
-                            </div>
-                            <div>
-                                @*@Html.HiddenFor(m => m.id_conte, "idpub")*@
-                                @Html.TextBoxFor(m => m.id_conte, new { @Value = idpub })
+                                @Html.HiddenFor(m => m.id_conte, new { @Value = idpub })
+                                @*@Html.TextBoxFor(m => m.id_conte, new { @Value = idpub })*@
                             </div>
                     </div>
                    
@@ -71,14 +88,41 @@
             
 
             <p>
-                <input type="submit" value="Enviar Opinion" />
+                <input type="submit" value="Enviar" />
             </p>
             
 
-            </fieldset>
         </div>
     </form>
   
-    
-}   
+} 
+</br>
+<div class="container_24">
+    <div class="row">
+        <div class="wrapper">
+            <div class="grid_16">
+                <div class="box">
+                        
+                        <b><h4> COMENTARIOS</h4></b>
+                 
+                        @foreach (var i in @ViewBag.comentarios)
+                        {
+                           @* <text>_______________________________________________________________________________________</text>*@
+                            <br/><br/>
+                            string ruta1 = "/imagenes/" + @i.avatar;
+                            <img src="@ruta1" alt="por si no da" class="comentario_ident"/>
+                            <h4>@i.fecha</h4>
+                            <h4>@i.nombre Dice :</h4> 
+                            @i.contenido<br/>
+                      
+                        }
+
+                        
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
 

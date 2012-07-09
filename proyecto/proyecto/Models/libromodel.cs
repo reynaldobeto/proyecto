@@ -34,8 +34,9 @@ namespace proyecto.Models
                descripcion = modelo.descripcion,
                contenido = modelo.contenido,
                portada = modelo.portada,
-               estado = "activo",
+               estado = "false",
                UserId = modelo.idusers,
+               observacion = "ninguno",
 
            };
            db.publicacions.InsertOnSubmit(pub);
@@ -70,18 +71,18 @@ namespace proyecto.Models
        //    db.categorias.InsertOnSubmit(cat);
        //    db.SubmitChanges();
        //}
-       relcategoria rcar = new relcategoria();
-       public void regcategoria(libromodel modelo, int idpub, int idcate)
-       {
-           relcategoria rcar = new relcategoria() 
-           { 
-               id_cat= idcate,
-               id_conte=idpub,
-           };
-           db.relcategorias.InsertOnSubmit(rcar);
-           db.SubmitChanges();
+       //relcategoria rcar = new relcategoria();
+       //public void regcategoria(libromodel modelo, int idpub, int idcate)
+       //{
+       //    relcategoria rcar = new relcategoria() 
+       //    { 
+       //        id_cat= idcate,
+       //        id_conte=idpub,
+       //    };
+       //    db.relcategorias.InsertOnSubmit(rcar);
+       //    db.SubmitChanges();
         
-       }
+       //}
 
     }
      

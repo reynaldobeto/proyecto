@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "buscar";
+}
+
+
+<h4>PERFIL DE USUARIO</h4><br/>
+
+@{
+    ViewBag.Title = "imformacion";
+    string imagen = "~/imagenes/" + ViewBag.list.avatar;
+    int ide = ViewBag.list.id;
+    
+}
+<section id="content">
+  	<div class="container_24">
+    	<div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_12">
+          	    <div class="box">
+            	    <b><h4>DATOS DE USUARIO</h4></b><br/>
+                  <div class="wrapper">
+              	    <img src="@Url.Content(imagen)" alt="" class="img-indent"></img>
+                    <br/><br/>
+                    <p class="p2"> <b>Nombre y Apellido :  </b>  @ViewBag.list.nombre
+                                    @ViewBag.list.apellido<br/>
+
+                                 <b>Pais :  </b>  @ViewBag.list.pais<br/>
+                              <b>Intereses :  </b>  @ViewBag.list.intereses<br/>
+                              <b>Sexo :  </b> @ViewBag.list.sexo<br/>
+                                 </br>
+                                 @Html.ActionLink("editar perfil ", "actualizar", new { ide })<br/></p>
+
+
+                                 <br/>
+                                 <br/>
+                                      <br/>
+                                           <br/>
+                         <h4>Se han encontrado @ViewBag.con resultados</h4>
+                         @foreach (var v in @ViewBag.lista)
+                         {
+                             //string xx = v.titulo;
+                             @v.titulo <br/>
+                             
+                             @v.descripcion<br/>
+                             //string x = ViewBag.dato;
+                             //string y = "<span style='background-color: #ff6600;'>" + x + "</span>";
+                             //string aux = v.Descripcion;
+
+                         }
+
+
+                  </div>
+                </div>
+              </div>
+           <div class="grid_8">
+          	<div class="titulonav2">
+               Categorias
+               </div>
+               <div class="cuerporec">
+               <ul>
+                  <li><a href="#">Deportes</a></li>
+                  <li><a href="#">Programacion</a></li>
+                  <li><a href="#">Medicina</a></li>
+                  <li><a href="#">Civil</a></li>
+                  <li><a href="#">Agronomia</a></li>
+               </ul>
+               </div>
+               <div class="cuerporec">
+                      <div id="searchBoxOne">
+                          @using (Html.BeginForm("log","Home"))  {
+							    <input type="text" name="criterio" value="criterio"/>
+                                <select name="porque"><option value="*">Todos</option></select>
+							  <br/><br/>  
+                             <p>
+                                <input type="submit" value="BUSCAR" / class="button">
+                            </p>
+            
+							
+                          }
+                    </div>
+                </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+              

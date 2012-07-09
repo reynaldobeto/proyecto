@@ -34,11 +34,13 @@ namespace proyecto.Controllers
             System.IO.File.WriteAllBytes(Path.Combine(path, filename), data);
             //FormsAuthentication.SetAuthCookie(User.Identity.Name, false);
             //return RedirectToAction("Index", "Home");
+            //if (intereses == null)
+            //    intereses = "";
             claseslinqDataContext regis = new claseslinqDataContext();
             Guid idusuario = (from a in regis.aspnet_Users where a.UserName == User.Identity.Name select a.UserId).ToArray()[0];
             perfil registrar = new perfil()
             { 
-                nombre=nombre,apellido=apellido,pais=pais,intereses=intereses, sexo=sexo, estado="activo", avatar=avatar.FileName ,UserId=idusuario
+                nombre=nombre,apellido=apellido,pais=pais,intereses=intereses, sexo=sexo, estado="activo", avatar=avatar.FileName ,UserId=idusuario,puntaje=0
             };
             regis.perfils.InsertOnSubmit(registrar);
             regis.SubmitChanges();

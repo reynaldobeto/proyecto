@@ -2,27 +2,33 @@
     ViewBag.Title = "mostrarcursos";
 }
 <div>
-<h2>mostrarcursos</h2>
+<h6 id="ps">SON TODOS LOS CURSOS ACTUALES EN EL SISTEMA</h6><br/>
+<h4 id="ps">DESEA PUBLICAR UN CURSO HAGA CLICK @Html.ActionLink("AQUI", "cursos", "cursos") </h4><br/><br/>
 @foreach (var item in @ViewBag.lista1)
 {
-          //string imagen1 = "~/Content/imagenes/" + @item.portada;
-          string ruta = "../Content/imagenes2/" + @item.portada;
-          string titulo = @item.titulo;
-          int ide = @item.id;  
-         <article id="article3">
-        
-          <table>
-              <tr>
-                    <td rowspan="2"> <img src="@ruta" width="60px" height="70px" alt="por si no da"/> </td>
-              </tr>
-              <tr>
-                    <td>    <h6> @Html.ActionLink(titulo,"detalle", new { ide})</h6><h6>@item.nombre  @item.apellido</h6><h6>@item.fecha_publicacion</h6><h6>@Html.Raw(item.contenido)</h6></td>
-              </tr>      
- 
-                   
-                    
-          </table>       
-           
-        </article>
-}		
-</div>
+    string imagen1 = "/Content/imagenes2/" + @item.portada;
+    string titulo = @item.titulo;
+    int ide1 = @item.id;  
+
+    <div>
+  	    <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+              	    <img src="@imagen1" alt="por si no da" class="img-indent">
+                    <h4 class="alt">@Html.ActionLink(titulo, "detallecurso", new { id=ide1 })</h4>
+                    <h4>Publicado por  @item.nombre  @item.apellido</h4>
+                    <h4> @item.fecha_publicacion</h4><br/>
+                    @item.descripcion
+
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+      </div>
+    </div>
+} 

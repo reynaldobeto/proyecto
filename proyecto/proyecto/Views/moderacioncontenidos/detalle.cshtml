@@ -1,0 +1,59 @@
+﻿@model proyecto.Models.comentarios
+@{
+    ViewBag.Title = "detalle";
+}
+
+<h4 id="ps">DETALLE DEL LIBRO<h4> 
+ <div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                    
+              	    <img src="/Content/imagenes/@ViewBag.portada" alt="por si no da" class="img-indent"/>
+                    <h4 class="alt">@ViewBag.autor</h4>
+                    <h4>Titulo del Libro : @ViewBag.titulo</h4>
+                     <h4>Año de Publicacion : @ViewBag.fecha</h4>
+                      <h4>Descripcion : </h4><p>@ViewBag.descripcion</p>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <br/>
+                      
+                       <h4>Publicado por : @ViewBag.nombre</h4> <img src="/imagenes/@ViewBag.avatar" alt="por si no da" width="50px" height="50px"/>
+                       <h4>karma de Usuario :@ViewBag.puntaje</h4>
+                       
+                        <iframe src="/Content/libros/@ViewBag.contenido" width="600" height="500"></iframe>
+     
+                  </div>
+                 <br/>
+                 @Html.ActionLink("aceptar", "corregir", new { id = @ViewBag.id }, new { @class="button3"})  
+
+                        <br/>
+                         @using (Html.BeginForm("Observar","libro")) { 
+                        <br/>
+                        <h4>@Html.Label("Observaciones")</h4>
+                        <input type="hidden" name="idcont" value="@ViewBag.id" />
+                        @Html.TextArea("observacion", new { columns="100"})<br />
+                        <input type="submit" value="enviar revision"/>
+                    }
+                       
+@*                
+                  @Html.ActionLink("aceptar", "detalle", new { id = @ViewBag.id}, new { @class="button2"})*@
+
+
+                            
+                </div>
+              </div>
+        </div>
+     </div>
+        
+            
+       
+   </div>
+
+
+
+
+

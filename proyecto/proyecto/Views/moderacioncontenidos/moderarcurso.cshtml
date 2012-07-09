@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "moderarticulo";
+}
+
+<h2>moderar curso</h2>
+<h4 id="ps">PUBLICACIONES PENDIENTES POR REVISAR</h4><br/>
+
+<div class="container_24">
+    	    <div class="row">
+      	    <div class="wrapper">
+        	    <div class="grid_16">
+          	    <div class="box">
+                  <div class="wrapper">
+                 
+                  <h4>Usted tiene (@ViewBag.cont) cursos no publicados por revisar </h4> 
+                    @foreach (var item in ViewBag.arti)
+                    {
+                        string titulo = @item.titulo;
+                        int idpub = @item.id;
+                        <h4 class="alt"> @Html.ActionLink(titulo, "detallecurso", new { id = idpub })</h4>
+                        <text> @item.fecha_publicacion</text><br/>
+                         @item.descripcion<br/><br/>                                     
+                       
+                    }
+                  </div>
+                </div>
+              </div>
+        </div>
+        </div>
+</div>
